@@ -1,8 +1,8 @@
 const inquirer = require('inquirer');
-const shape = require('./lib/shape.js');
-const circle = require('./lib/circle.js');
-const square = require('./lib/circle.js');
-const triangle = require('./lib/circle.js');
+const Shape = require('./lib/shape.js');
+const Circle = require('./lib/circle.js');
+const Square = require('./lib/square.js');
+const Triangle = require('./lib/triangle.js');
 const fs = require('fs');
 
 inquirer.prompt([
@@ -33,19 +33,19 @@ inquirer.prompt([
     const filename = `logo.svg`;
     // pick the shape from the list
     var svg;
-    console.log(data.shape)
+    console.log(data.shape, data.shape == "circle")
     switch(data.shape){
         case 'circle':
-            svg = new circle();
+            svg = new Circle();
             break;
         case 'triangle':
-            svg = new triangle();
+            svg = new Triangle();
             break;
         case 'square':
-            svg = new square();
+            svg = new Square();
             break;
         default:
-            svg = new shape();
+            svg = new Shape();
             break;
     }
     // set the color of the shape to shapeColor
@@ -65,7 +65,7 @@ inquirer.prompt([
     });
     // write to output folder the README.md file
     fs.writeFile(`./output/${filename}`, output, (err) =>
-      err ? console.log(err) : console.log('Success!')
+      err ? console.log(err) : console.log('Generated logo.svg')
     );
 });
 
