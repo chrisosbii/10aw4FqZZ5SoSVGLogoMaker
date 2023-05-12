@@ -33,6 +33,7 @@ inquirer.prompt([
     const filename = `logo.svg`;
     // pick the shape from the list
     var svg;
+    console.log(data.shape)
     switch(data.shape){
         case 'circle':
             svg = new circle();
@@ -49,11 +50,12 @@ inquirer.prompt([
     }
     // set the color of the shape to shapeColor
     svg.setColor(data.shapeColor);
+    console.log(svg.render());
 
     var output = `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="300" height="200">
     ${svg.render()}
     <text x="150" y="125" font-size="60" text-anchor="middle" fill="${data.textColor}">${data.letters}</text>
-  </svg>`;
+</svg>`;
 
     //console.log(output);     
     // write output to file
